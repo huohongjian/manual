@@ -1,0 +1,70 @@
+.troffeditor {
+	border: 1px solid #718da6;
+	background: #fff;
+	display: block;
+	overflow: hidden;
+
+}
+
+
+.te-toolbar {
+	overflow: visible;
+	vertical-align: bottom;
+	padding: 2px 0 0 0 !important;
+	padding: 3px 0 0 0;
+	min-height: 22px;
+	background: linear-gradient(180deg, #ffffff, #f3f8fb);
+}
+
+
+.te-textarea {
+	height: 100%;
+	
+	overflow-y: scroll;
+
+	margin: 0;
+	clear: both;
+	border-top: 1px solid #718da6;
+	background: #fff;
+	display: block;
+	padding: 0;
+	resize: none;
+}
+
+.te-statbar {
+	text-align: center;
+	overflow: hidden;
+	padding: 0;
+	background-color: #f6f6f6;
+	border-top: 1px solid #718da6;
+	height: 10px;
+	line-height: 10px;
+	cursor: s-resize;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+}
+
+
+.te-btn {
+	display: block;
+	width: 20px;
+	float: left;
+	height: 20px;
+	background-image: url(icon.gif);
+	-moz-user-select: none;
+	text-indent: -10000px;
+	font-size: 0px;
+}
+
+.te-btn[name=bold] {
+	background-position: -3px -77px;
+}
+.te-btn[name=italic] {
+	background-position: -24px -77px;
+}
+.te-btn[name=underline] {
+	background-position: -46px -77px;
+}
+.te-btn[name=strikethrough] {
+	background-position:
+}
