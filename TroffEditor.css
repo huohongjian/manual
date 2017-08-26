@@ -45,6 +45,19 @@
 }
 
 
+.te-toolbar i {
+	margin-left: 5px;
+	cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
 .te-btn {
 	display: block;
 	width: 20px;

@@ -5,13 +5,21 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>TroffEditor Example</title>
+	<link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css?v=4.7.0">
 	<link rel="stylesheet" type="text/css" href="./TroffEditor.css">
 	<script type="text/javascript" src="./TroffEditor.js"></script>
     
 </head>
 <body>
-	<p>wangEditor 获取内容</p>
-    <div id="div3" style="height_:300px; width:600px;"></div>
+	<p>TroffEditor 测试</p>
+	<div style="width: 300px; height:50px" contenteditable="true">
+	一二三个五，六七八小时
+	</div>
+
+    <div id="div3" style="height_:300px; width:600px;">
+    	<p>我是一个兵，来自老百姓.<span>hello world</span>这里是我的世界</p>
+    	<p>你是一个官，爱国爱人民</p>
+    </div>
 
 	<script type="text/javascript">
 		var editor = new TroffEditor('div3', {
