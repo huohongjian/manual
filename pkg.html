@@ -1,0 +1,149 @@
+<html>
+<head>
+<title>PKG-INFO(8)			FreeBSD 系统管理员手册			PKG-INFO(8)</title><meta charset="utf-8">
+</head><body>
+<pre>
+<span class="Dd"></span><span class="Dt">PKG-INFO(8)			FreeBSD 系统管理员手册			PKG-INFO(8)</span><span class="Os"></span>
+
+<b class="Sh">名称</b>
+	<b class="Nm">pkg info</b> <span class="Nd"> - display information for packages</span> 
+
+<b class="Sh">命令提纲</b>
+	<b class="Nm">pkg info</b> <i class="Ar">pkg-name</i>
+	<b class="Nm">pkg info</b> <b class="Fl">-a</b>
+	<b class="Nm">pkg info</b> [<b class="Op_Fl">-AbBDdefIklOpqRrs</b>] [<b class="Op_Fl">-Cgix</b>] <i class="Ar">pkg-name</i>
+	<b class="Nm">pkg info</b> [<b class="Op_Fl">-AbBDdfIlpqRrs</b>] <b class="Fl">-F</b><i class="Fl__Ar"> pkg-file</i> 
+
+	<b class="Nm">pkg info</b> <i class="Ar">pkg-name</i>
+	<b class="Nm">pkg info</b> <b class="Cm">--all</b>
+	<b class="Nm">pkg info</b> [<b class="Op_Cm">--{annotations,provided-shlibs,required-shlibs}</b>] 
+	          [<b class="Op_Cm">--{pkg-message,dependencies,exists,full,comment,locked}</b>] 
+	          [<b class="Op_Cm">--{list-files,by-origin,quiet,prefix,raw,required-by,size}</b>] 
+	          [<b class="Op_Cm">--{case-sensitive,glob,case-insensitive,regex}</b>] <i class="Ar">pkg-name</i>
+	<b class="Nm">pkg info</b> [<b class="Op_Cm">--{annotations,provided-shlibs,required-shlibs}</b>] 
+	          [<b class="Op_Cm">--{pkg-message,dependencies,full,comment,list-files}</b>] 
+	          [<b class="Op_Cm">--{quiet,prefix,raw,required-by,size}</b>] <b class="Cm">--file</b><i class=".Cm__Ar"> pkg-file</i> 
+	          [<b class="Op_Fl">--raw-format</b><i class="Op_Fl_Ar"> format</i>] 
+
+<b class="Sh">命令简述</b>
+	<b class="Nm">pkg info</b> is used for displaying information for packages. 
+
+<b class="Sh">命令选项</b>
+	The following options are supported by <b class="Nm">pkg info</b> 
+
+	<b class="It_Fl">-a</b>, <b class="It_Fl_ass_Cm"> --all</b>
+		Display all installed packages. 
+
+	<b class="It_Fl">-A</b>, <b class="It_Fl_ass_Cm"> --annotations</b>
+		Display any annotations added to the package. 
+
+	<b class="It_Fl">-C</b>, <b class="It_Fl_ass_Cm"> --case-sensitive</b>
+		Make the standard or the regular expression <b class="Fl">-( x )</b> matching 
+		against <i class="Ar">pkg-name</i> case sensitive. 
+
+	<b class="It_Fl">-f</b>, <b class="It_Fl_ass_Cm"> --full</b>
+		Display full information about the packages matching <i class="Ar">pkg-name .</i> 
+		This is the default. 
+
+	<b class="It_Fl">-R</b>, <b class="It_Fl_ass_Cm"> --raw</b>
+		Display the full manifest (raw) for the packages matching 
+		<i class="Ar">pkg-name</i> <i class="Ar">.</i> 
+
+	<b class="It_Fl">--raw-format</b>
+		Choose the format of the raw output. The format can be: json, 
+		json-compact, yaml (default). 
+
+	<b class="It_Fl">-e</b>, <b class="It_Fl_ass_Cm"> --exists</b>
+		If <i class="Ar">pkg-name</i> is installed and registered in the database, return 
+		0, otherwise return 1. Useful for checking whether the package is 
+		installed. 
+
+	<b class="It_Fl">-D</b>, <b class="It_Fl_ass_Cm"> --pkg-message</b>
+		Show the pkg-message for matching packages. 
+
+	<b class="It_Fl">-g</b>, <b class="It_Fl_ass_Cm"> --glob</b>
+		Treat <i class="Ar">pkg-name</i> as a shell glob pattern. 
+
+	<b class="It_Fl">-i</b>, <b class="It_Fl_ass_Cm"> --case-insensitive</b>
+		Make the standard or the regular expression <b class="Fl">-( x )</b> matching 
+		against <i class="Ar">pkg-name</i> case insensitive. This is the default, unless 
+		modified by setting <span class="Ev">CASE_SENSITIVE_MATCH</span> to true in <i class="Pa">pkg.conf .</i> 
+
+	<b class="It_Fl">-I</b>, <b class="It_Fl_ass_Cm"> --comment</b>
+		Display the specified packages and their comments. 
+
+	<b class="It_Fl">-x</b>, <b class="It_Fl_ass_Cm"> --regex</b>
+		Treat <i class="Ar">pkg-name</i> as a regular expression according to the "modern" 
+		or "extended" syntax of <span class="Xr">re_format(7)</span> 
+
+	<b class="It_Fl">-d</b>, <b class="It_Fl_ass_Cm"> --dependencies</b>
+		Display the list of packages on which <i class="Ar">pkg-name</i> depends. 
+
+	<b class="It_Fl">-r</b>, <b class="It_Fl_ass_Cm"> --required-by</b>
+		Display the list of packages which require <i class="Ar">pkg-name .</i> 
+
+	<b class="It_Fl">-k</b>, <b class="It_Fl_ass_Cm"> --locked</b>
+		Show the locking status for <i class="Ar">pkg-name .</i> When used in combination 
+		with <b class="Fl">-d</b> or <b class="Fl">-r ,</b> indicate which packages, dependencies or 
+		requirements are locked by '(*)'. Locking status is only 
+		meaningful for installed packages; all locking statuses will show 
+		as unlocked when information about a <i class="Ar">pkg-file</i> is queried. 
+
+	<b class="It_Fl">-l</b>, <b class="It_Fl_ass_Cm"> --list-files</b>
+		Display all files installed by <i class="Ar">pkg-name .</i> 
+
+	<b class="It_Fl">-b</b>, <b class="It_Fl_ass_Cm"> --provided-shlibs</b>
+		Display all shared libraries provided by <i class="Ar">pkg-name .</i> 
+
+	<b class="It_Fl">-B</b>, <b class="It_Fl_ass_Cm"> --required-shlibs</b>
+		Display all shared libraries used by <i class="Ar">pkg-name .</i> 
+
+	<b class="It_Fl">-s</b>, <b class="It_Fl_ass_Cm"> --size</b>
+		Display the total size of files installed by <i class="Ar">pkg-name .</i> 
+
+	<b class="It_Fl">-q</b>, <b class="It_Fl_ass_Cm"> --quiet</b>
+		Be <span class="Dq">quiet .</span> Prints only the requested information without 
+		displaying many hints. 
+
+	<b class="It_Fl">-O</b>, <b class="It_Fl_ass_Cm"> --by-origin</b>
+		Search is done by the <i class="Ar">pkg-name</i> origin. Added only for Ports 
+		compatibility. 
+
+	<b class="It_Fl">-E</b>, <b class="It_Fl_ass_Cm"> --show-name-only</b>
+		Hides the full package output and only shows the package name. 
+		This option is deprecated and exists only for Ports compatibility. 
+	
+
+	<b class="It_Fl">-o</b>, <b class="It_Fl_ass_Cm"> --origin</b>
+		Display <i class="Ar">pkg-name</i> origin. 
+
+	<b class="It_Fl">-p</b>, <b class="It_Fl_ass_Cm"> --prefix</b>
+		Display the installation prefix for each package matching 
+		<i class="Ar">pkg-name</i> <i class="Ar">.</i> 
+
+	<b class="It_Fl">-F</b><i class="It_Fl_Ar"> pkg-file</i>, <b class="It_Fl_ass_Cm"> --file</b><i class="It_Fl_ass_Ar"> pkg-file</i>
+		Displays information from the package archive <i class="Ar">pkg-file .</i>  
+
+<b class="Sh">环境变量</b>
+	The following environment variables affect the execution of <b class="Nm">pkg info</b> See 
+	<span class="Xr">pkg.conf(5)</span> for further description. 
+
+	<span class="It_Ev">PKG_DBDIR</span> 
+	<span class="It_Ev">CASE_SENSITIVE_MATCH</span> 
+
+<b class="Sh">相关文件</b>
+	See <span class="Xr">pkg.conf(5)</span> 
+
+<b class="Sh">参考条目</b>
+	<span class="Xr">pkg_printf(3)</span> <span class="Xr">pkg_repos(3)</span> <span class="Xr">pkg-repository(5)</span> <span class="Xr">pkg.conf(5)</span> <span class="Xr">pkg(8)</span> <span class="Xr">pkg-add(8)</span> 
+	<span class="Xr">pkg-annotate(8)</span> <span class="Xr">pkg-audit(8)</span> <span class="Xr">pkg-autoremove(8)</span> <span class="Xr">pkg-backup(8)</span> <span class="Xr">pkg-check(8)</span> 
+	<span class="Xr">pkg-clean(8)</span> <span class="Xr">pkg-config(8)</span> <span class="Xr">pkg-convert(8)</span> <span class="Xr">pkg-create(8)</span> <span class="Xr">pkg-delete(8)</span> 
+	<span class="Xr">pkg-fetch(8)</span> <span class="Xr">pkg-install(8)</span> <span class="Xr">pkg-lock(8)</span> <span class="Xr">pkg-query(8)</span> <span class="Xr">pkg-register(8)</span> 
+	<span class="Xr">pkg-repo(8)</span> <span class="Xr">pkg-rquery(8)</span> <span class="Xr">pkg-search(8)</span> <span class="Xr">pkg-set(8)</span> <span class="Xr">pkg-shell(8)</span> 
+	<span class="Xr">pkg-shlib(8)</span> <span class="Xr">pkg-ssh(8)</span> <span class="Xr">pkg-stats(8)</span> <span class="Xr">pkg-update(8)</span> <span class="Xr">pkg-updating(8)</span> 
+	<span class="Xr">pkg-upgrade(8)</span> <span class="Xr">pkg-version(8)</span> <span class="Xr">pkg-which(8)</span> <span class="Xr">pkg-which(8)</span> 
+
+FreeBSD 11.0-RELEASE-p1        December 1, 2014        FreeBSD 11.0-RELEASE-p1
+</pre>
+</body>
+</html>
