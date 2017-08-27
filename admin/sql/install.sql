@@ -32,7 +32,7 @@ CREATE TABLE m_doc
 	CONSTRAINT m_doc_pkey PRIMARY KEY (id)
 );
 CREATE INDEX m_doc_name_idx 		ON m_doc (name); 
-CREATE INDEX m_doc_updatetime_idx 	ON m_doc (updatetime)
+CREATE INDEX m_doc_updatetime_idx 	ON m_doc (updatetime);
 
 
 
@@ -79,6 +79,22 @@ INSERT INTO m_content (docid, english, need) VALUES
 (1, '<b class="Sh">命令提纲</b>', false),
 (1, '<b class="Nm">pkg info</b> <i class="Ar">pkg-name</i>', false),
 (1, '<b class="Nm">pkg info</b> <b class="Fl">-a</b>', false),
+(1, '<b class="Nm">pkg info</b> [<b class="Op_Fl">-AbBDdefIklOpqRrs</b>] [<b class="Op_Fl">-Cgix</b>] <i class="Ar">pkg-name</i>', false),
+(1, '<b class="Nm">pkg info</b> [<b class="Op_Fl">-AbBDdfIlpqRrs</b>] <b class="Fl">-F</b><i class="Fl__Ar"> pkg-file</i>',false),
+(1, '<b class="Nm">pkg info</b> <i class="Ar">pkg-name</i>', false),
+(1, '<b class="Nm">pkg info</b> <b class="Cm">--all</b>',false),
+(1, '<b class="Nm">pkg info</b><b class="Op_Cm">[--{annotations,provided-shlibs,required-shlibs}</b>]', false),
+(1, '<b class="Op_Cm">[--{pkg-message,dependencies,exists,full,comment,locked}</b>]',false),
+(1, '<b class="Op_Cm">[--{list-files,by-origin,quiet,prefix,raw,required-by,size}</b>]',false),
+(1, '<b class="Op_Cm">[--{case-sensitive,glob,case-insensitive,regex}</b>] <i class="Ar">pkg-name</i>',false),
+(1, '<b class="Nm">pkg info</b><b class="Op_Cm"> [--{annotations,provided-shlibs,required-shlibs}</b>]', false),
+(1, '<b class="Op_Cm">[--{pkg-message,dependencies,full,comment,list-files}</b>]',false),
+(1, '<b class="Op_Cm">[--{quiet,prefix,raw,required-by,size}</b>] <b class="Cm">--file</b><i class=".Cm__Ar"> pkg-file</i>',false),
+(1, '<b class="Op_Fl">[--raw-format</b><i class="Op_Fl_Ar"> format</i>]',false),
+
+
+
+
 (1, '<b class="Sh">命令简述</b>', false),
 (1, '<b class="Nm">pkg info</b><span class="en">is used for displaying information for packages.</span>', true),
 (1, '<b class="Sh">命令选项</b>', false),
@@ -89,5 +105,6 @@ INSERT INTO m_content (docid, english, need) VALUES
 (1, '<span class="en">Display any annotations added to the package.</span>', true),
 (1, '<b class="It_Fl">-C</b>, <b class="It_Fl_ass_Cm"> --case-sensitive</b>', false),
 (1, '<span class="en">Make the standard or the regular expression <b class="Fl">-( x )</b> matching against <i class="Ar">pkg-name</i> case sensitive.</span>', true);
+
 
 

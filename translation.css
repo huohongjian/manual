@@ -1,0 +1,33 @@
+.translation {
+	width: 80%;
+	margin: auto;
+
+}
+
+.translation .Dd {
+	width: 100%;
+	text-align:center;
+	font-size: 22px;
+	display: block;
+}
+
+
+.translation .Nm,
+.translation .It_Fl {
+	padding-left: 60px;
+
+}
+
+.translation .Op_Cm,
+.translation .Op_Fl {
+	padding-left: 150px;
+}
+
+.translation .It_Fl_ass_Cm {
+	padding-left: 20px;
+}
+
+
+.translation .en {
+	padding-left: 120px;
+}
