@@ -4,19 +4,35 @@
 */
 
 
--- man文档表，只记录文件名 --
+-- 类别表，用于分类 --
+DROP TABLE IF EXISTS m_cat CASCADE;
+DROP SEQUENCE IF EXISTS m_cat_id_seq;
+CREATE SEQUENCE m_cat_id_seq;
+CREATE TABLE m_cat
+(
+	id 		integer NOT NULL DEFAULT nextval('m_cat_id_seq'::regclass),
+	name  	text,
+	CONSTRAINT m_cat_pkey PRIMARY KEY (id)
+);
+
+
+
+-- man文档表 --
 DROP TABLE IF EXISTS m_doc CASCADE;
 DROP SEQUENCE IF EXISTS m_doc_id_seq;
 CREATE SEQUENCE m_doc_id_seq;
 CREATE TABLE m_doc
 (
-	id 		integer NOT NULL DEFAULT nextval('m_doc_id_seq'::regclass),
-	name  	text,
-	userid	integer,	-- 管理本条目翻译的人员id
-	status integer,
+	id 			integer NOT NULL DEFAULT nextval('m_doc_id_seq'::regclass),
+	name  		text,		-- man文件名
+	catid		integer,	-- 类别id
+	userid		integer,	-- 管理本条目翻译的人员id
+	status		integer NOT NULL DEFAULT 0,	-- 0:未完成 1:提交 2:审定
+	updatetime 	timestamp(0) without time zone NOT NULL DEFAULT now(),
 	CONSTRAINT m_doc_pkey PRIMARY KEY (id)
 );
-CREATE INDEX m_doc_name_idx ON m_doc (name); 
+CREATE INDEX m_doc_name_idx 		ON m_doc (name); 
+CREATE INDEX m_doc_updatetime_idx 	ON m_doc (updatetime)
 
 
 
@@ -27,12 +43,12 @@ CREATE SEQUENCE m_content_id_seq;
 CREATE TABLE m_content
 (
 	id 			integer NOT NULL DEFAULT nextval('m_content_id_seq'::regclass),
-	docid		integer,
-	need 		boolean NOT NULL DEFAULT FALSE,	-- 是否需要翻译
-	english		text,
-	trans 	text,
-	posttime 	timestamp(0) without time zone NOT NULL DEFAULT now(),
-	suggest 	jsonb,		-- 修改建议
+	docid		integer,						-- 文档id
+	need 		boolean NOT NULL DEFAULT TRUE,	-- 是否需要翻译
+	english		text,							-- 原文
+	trans 		text,							-- 译文
+	updatetime 	timestamp(0) without time zone NOT NULL DEFAULT now(),
+	suggest 	jsonb,							-- 修改建议
 	CONSTRAINT m_content_pkey PRIMARY KEY (id)
 );
 CREATE INDEX m_content_docid_idx ON m_content (docid); 
