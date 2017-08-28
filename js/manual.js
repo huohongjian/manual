@@ -7,37 +7,44 @@ window.onload = function(){
 	var editNode = void 0;
 
 	R('body').addEventListener('click', function(e){
-		e = e || window.e;
-		var currNode = e.target;
-		
+		var currNode = (e||window.e).target;
 		// 点击空白处返回
-		if (currNode.tagName==='PRE') {
+		if (R.inArray(currNode.tagName, ['BODY', 'PRE'])) {
 			if(editNode && editNode.innerText==='') {
-				removeElement(editNode);
+				editNode.style.display = 'none';
+				if(editNode.previousSibling.tagName==='BR'){
+					editNode.previousSibling.style.display = 'none';
+				}
 			}
 			return
-		}
-		// 如果点击编辑框则返回
-		if (currNode.className==='zh') {
+		} else if (currNode.className==='zh') { // 如果点击编辑框则返回
 			return;
 		}
 
-		var	pareNode = getParentNode(currNode, {tagName:'SPAN'}, true);
-			nextNode = pareNode.nextSibling,
-			presNode = pareNode.previousSibling;
+
+		var	currLine = getParentNode(currNode, {tagName:'SPAN'}, true);
+//		var nextNode = pareNode.nextSibling,
+//			presNode = pareNode.previousSibling;
 
 
+		var lastNode = currLine.lastChild;
 
-		var pareNodePadding = pareNode.innerHTML;
-		alert(pareNodePadding)
+		if (lastNode && lastNode.className === 'zh') {
 
-
-
-
-		if (nextNode && nextNode.className === 'zh') {
-			nextNode.focus();
+			editNode = lastNode;
+			
 		} else {
-			var el = R.ce('div', {
+
+			//先清除以前的
+			if(editNode && editNode.innerText==='') {
+				editNode.style.display = 'none';
+				if(editNode.previousSibling.tagName==='BR'){
+		//			alert('d')
+					editNode.previousSibling.style.display = 'none';
+				}
+			}
+
+			var el = R.ce('span', {
 				className: 'zh',
 			});
 			el.setAttribute('contenteditable', true);
@@ -47,12 +54,21 @@ window.onload = function(){
 				removeElement(editNode);
 			}
 
-
-			insertAfter(el, pareNode);
+			currLine.appendChild(R.ce('br'));
+			currLine.appendChild(el);
 			editNode = el;
-			el.focus();
-		}
 
+			// 缩进格式
+			(/( +)/).test(currLine.innerHTML);
+			var space = RegExp.$1.length;
+			editNode.style.marginLeft = space*8 + 'px';
+
+		}
+		editNode.style.display = 'inline';
+		if(editNode.previousSibling.tagName==='BR'){
+			editNode.previousSibling.style.display = 'inline';
+		}
+		editNode.focus();
 		
 
 	});

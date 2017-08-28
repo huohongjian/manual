@@ -61,6 +61,7 @@
 		if (n===undefined) reg = RegExp('^[a-zA-Z_0-9]$');
 		return reg.test(str);
 	}
+	_.inArray = function(o,a){var i=a.length;while(i--){if(a[i]===o)return true}return false}
 	
 	_.get =function(url, cb, type){_.ajax({"url":url, "onload":cb, "method":"GET", "type":type||"TEXT"})}
 	_.post=function(url, data, cb, type){_.ajax({"url":url, "onload":cb, "data":data, "type":type||"TEXT"})}

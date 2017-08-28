@@ -1,11 +1,11 @@
 <script>
 
 	var s = '9   123';
-	var r = /(9 *1)/g; 
-	var result = r.exec(s);
+	var r = /( +)/g; 
+	var result = r.test(s);
 
 
-	console.log('s' + result + 'e')
-
+	console.log('__s__' + result + '__e__' + RegExp.$1 + '__')
+	console.log(RegExp.$1.length)
 
 </script>
