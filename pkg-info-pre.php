@@ -4,11 +4,14 @@
 	<meta charset="utf-8">
 	<title>FreeBSD Manual Translation</title>
 	<link rel="stylesheet" type="text/css" href="css/manual.css">
+
+	<script type="text/javascript" src="js/R.js?v=1.0.0"></script>
+	<script type="text/javascript" src="js/manual.js?v=1.0.0"></script>
 </head>
 <body>
 	
 <div class="translation">
-<pre>
+<pre class="translation-pre">
 
 
 <?php

@@ -6,6 +6,19 @@
   background_: lightblue;
 }
 
+
+.translation .zh:focus {
+  border: 1px solid red;
+  width: 100%;
+  min-height: 16px;
+  height: auto;
+}
+.translation .zh:blur {
+  border: 0;
+}
+
+
+
 p {
   margin: 0;
 }
